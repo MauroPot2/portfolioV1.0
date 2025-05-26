@@ -1,0 +1,48 @@
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Ciao, sono Mauro.</h1>
+    <p>Costruisco esperienze digitali semplici, concrete e open source.</p>
+    <span class="scroll-hint">↓ Scorri per saperne di più</span>
+  </div>
+</section>
+
+<!-- CHI SONO -->
+<section class="about-section fade-in">
+  <p>
+    Sono un full stack developer in crescita, con una vera passione per la tecnologia.
+    Amo sviluppare progetti che risolvono problemi reali, spesso auto-hostati su Raspberry Pi,
+    e imparare ogni giorno qualcosa di nuovo. Non ho ancora esperienza professionale sul campo,
+    ma porto con me determinazione, curiosità e voglia di costruire.
+  </p>
+</section>
+
+<!-- TECNOLOGIE -->
+<section class="skills-section fade-in">
+  <h2>Le tecnologie che uso</h2>
+  <div class="skills">
+    <span>Angular</span><span>Spring Boot</span><span>Docker</span>
+    <span>Python</span><span>SQLite</span><span>Tailwind CSS</span>
+  </div>
+</section>
+
+<!-- PROGETTI -->
+<section class="projects-section fade-in">
+  <h2>Alcuni dei miei progetti</h2>
+  <div class="projects-grid">
+    <app-project-card
+      *ngFor="let project of projects"
+      [project]="project"
+    ></app-project-card>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section fade-in">
+  <h2>Ti va di lavorare insieme?</h2>
+  <div class="cta-buttons">
+    <a href="mailto:tuamail@example.com" class="btn">Email</a>
+    <a href="https://github.com/MauroPot2" class="btn">GitHub</a>
+    <a href="https://linkedin.com/in/mauroleonardopotestio" class="btn">LinkedIn</a>
+  </div>
+</section>

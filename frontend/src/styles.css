@@ -1,0 +1,96 @@
+/* ==== FONT === */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
+
+/* ==== ROOT VARIABLES === */
+:root {
+  --primary-color: #00bcd4;       /* Azzurro tech */
+  --accent-color: #ffe81f;        /* Giallo Jedi */
+  --bg-color: #0d0d0d;            /* Nero profondo */
+  --surface-color: #1a1a1a;       /* Card, sezioni */
+  --text-color: #ffffff;          /* Testo primario */
+  --muted-text: #999999;          /* Testo secondario */
+  --border-color: #2f2f2f;        /* Separatori */
+}
+
+/* ==== GLOBAL RESET === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* ==== HEADINGS === */
+h1, h2, h3, h4 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent-color);
+}
+
+/* ==== LINKS === */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-color);
+}
+
+/* ==== CONTAINER === */
+.container {
+  padding: 2rem 1rem;
+}
+
+/* ==== CARD === */
+.card-custom {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+  color: var(--text-color); /* ⬅️ AGGIUNTA IMPORTANTE */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-custom:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+/* ==== NAVBAR OVERRIDE === */
+.navbar {
+  border-bottom: 1px solid var(--border-color);
+}
+.navbar-brand {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent-color) !important;
+}
+.navbar-nav .nav-link {
+  color: var(--text-color);
+}
+.navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* ==== DARK MODE (futuro toggle) === */
+body.dark {
+  --bg-color: #ffffff;
+  --surface-color: #f9f9f9;
+  --text-color: #111111;
+  --muted-text: #555555;
+  --border-color: #cccccc;
+}
+.card-custom:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 12px var(--primary-color);
+}
+.border-accent {
+  border-color: var(--accent-color) !important;
+}
+.text-accent {
+  color: var(--accent-color) !important;
+}

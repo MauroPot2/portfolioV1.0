@@ -1,0 +1,82 @@
+.hero-section {
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  max-width: 600px;
+}
+
+.scroll-hint {
+  margin-top: 2rem;
+  opacity: 0.6;
+  font-size: 1rem;
+  animation: bounce 2s infinite;
+}
+
+.about-section, .skills-section, .projects-section, .cta-section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+.skills span {
+  display: inline-block;
+  background: #222;
+  color: white;
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cta-buttons .btn {
+  margin: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: white;
+  color: #0f0c29;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.cta-buttons .btn:hover {
+  background: #ddd;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+/* Fade-in effect */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease 1s forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: none; }
+}
