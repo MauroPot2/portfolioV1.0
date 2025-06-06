@@ -1,46 +1,45 @@
 package com.mauropot.portfolio.auth;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.mauropot.portfolio.dto.AuthRequest;
+import com.mauropot.portfolio.dto.AuthResponse;
+import com.mauropot.portfolio.dto.RegisterRequest;
 import com.mauropot.portfolio.security.JwtUtil;
+import com.mauropot.portfolio.service.AuthService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthenticationController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthService authService;
+    private final JwtUtil jwtUtil;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
+    }
 
     @PostMapping("/login")
-    public String login(@RequestBody AuthRequest request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         try {
-            // Autentica username e password
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-            );
+            return ResponseEntity.ok(authService.authenticate(request));
         } catch (BadCredentialsException e) {
-            throw new RuntimeException("Credenziali non valide");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
 
-        // Carica i dettagli utente
-        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
-
-        // Genera il token
-        return jwtUtil.generateToken(userDetails.getUsername());
+    @GetMapping("/validate")
+    public ResponseEntity<Boolean> validateToken(@RequestHeader("Authorization") String token) {
+        try {
+            String jwt = token.substring(7); // Remove "Bearer " prefix
+            return ResponseEntity.ok(!jwtUtil.isTokenExpired(jwt));
+        } catch (Exception e) {
+            return ResponseEntity.ok(false);
+        }
     }
 }
