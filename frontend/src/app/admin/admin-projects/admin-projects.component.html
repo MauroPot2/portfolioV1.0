@@ -1,1 +1,30 @@
-<p>admin-projects works!</p>
+<h2>Gestione Progetti</h2>
+
+<form (ngSubmit)="saveProject()" #projectForm="ngForm" class="mb-4">
+  <input type="text" [(ngModel)]="selectedProject.title" name="title" required placeholder="Titolo" class="form-control mb-2">
+  <textarea [(ngModel)]="selectedProject.description" name="description" placeholder="Descrizione" class="form-control mb-2"></textarea>
+  <input type="text" [(ngModel)]="selectedProject.image" name="image" placeholder="URL Immagine" class="form-control mb-2">
+  <input type="text" [(ngModel)]="selectedProject.link" name="link" placeholder="Link GitHub" class="form-control mb-2">
+  <input type="text" [(ngModel)]="selectedProject.tags" name="tags" placeholder="Tag separati da virgola" class="form-control mb-2" (change)="selectedProject.tags = selectedProject.tags?.toString()?.split(',')">
+
+  <button class="btn btn-success" type="submit">Salva</button>
+  <button class="btn btn-secondary" type="button" (click)="cancel()">Annulla</button>
+</form>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Titolo</th>
+      <th>Azioni</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of projects">
+      <td>{{ p.title }}</td>
+      <td>
+        <button class="btn btn-sm btn-warning" (click)="selectProject(p)">✏️</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteProject(p.id!)">🗑️</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
