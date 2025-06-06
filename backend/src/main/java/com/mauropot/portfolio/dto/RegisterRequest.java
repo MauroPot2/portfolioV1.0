@@ -1,8 +1,7 @@
 package com.mauropot.portfolio.dto;
 
-public record RegisterRequest (
+public record RegisterRequest(
+    String username,
     String email,
-    String password,
-    String firstName,
-    String lastName
-){}
+    String password
+) {}
